@@ -125,14 +125,6 @@ To run the tests, use the following command:
 npm run test
 ```
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - NestJS for providing a robust framework for building scalable applications.
@@ -140,4 +132,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Sendinblue for enabling seamless email communication.
 
 ---
-
