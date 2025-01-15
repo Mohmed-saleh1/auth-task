@@ -5,7 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { UserRole } from 'src/user/user.types';
+import { UserRole } from '../../user/user.types';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
