@@ -1,73 +1,143 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS Authentication and Product Management API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is a NestJS-based API that provides authentication and product management functionalities. It includes features like user registration, login, email verification, password reset, and CRUD operations for products. The API is built with TypeScript, TypeORM for database management, and Swagger for API documentation.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **Authentication**:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  - User registration with email verification.
+  - User login with JWT-based authentication.
+  - Password reset functionality with email verification.
+  - Email verification code resend.
 
-## Installation
+- **Product Management**:
+
+  - Create, read, update, and delete products.
+  - Pagination support for product listing.
+  - Role-based access control (Admin-only operations).
+
+- **Email Notifications**:
+
+  - Email verification during registration.
+  - Password reset emails.
+  - Welcome emails.
+
+- **Database**:
+
+  - PostgreSQL database integration.
+  - TypeORM for database operations.
+
+- **API Documentation**:
+  - Swagger UI for API documentation.
+  - Bearer token authentication for protected endpoints.
+
+## Technologies Used
+
+- **NestJS**: A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.
+- **TypeORM**: An ORM for TypeScript and JavaScript that supports PostgreSQL, MySQL, and other databases.
+- **JWT (JSON Web Tokens)**: Used for secure user authentication.
+- **Bcrypt**: For password hashing and verification.
+- **Sendinblue**: For sending transactional emails (verification, password reset, etc.).
+- **Swagger**: For API documentation and testing.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- PostgreSQL database
+- Sendinblue API key (for email functionality)
+- Environment variables (see `.env.example` for reference)
+
+### Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/Mohmed-saleh1/auth-task.git
+   cd auth-task
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+
+   - Create a `.env` file in the root directory.
+   - Copy the contents of `.env.example` into `.env` and fill in the required values.
+
+4. **Database setup**:
+
+   - Ensure PostgreSQL is running.
+   - Update the database connection details in the `.env` file.
+
+5. **Start the application**:
+
+   ```bash
+   npm run start
+   ```
+
+6. **Access the API**:
+   - The API will be running on `http://localhost:3000`.
+   - Swagger documentation will be available at `http://localhost:3000/api-docs`.
+
+## API Endpoints
+
+### Authentication
+
+- **POST /auth/signup**: Register a new user.
+- **POST /auth/login**: Log in and receive a JWT token.
+- **POST /auth/verify-email**: Verify email using the code sent to the user's email.
+- **POST /auth/resend-verify-email**: Resend the email verification code.
+- **POST /auth/forgot-password**: Request a password reset code.
+- **POST /auth/verify-reset-code**: Verify the password reset code.
+- **POST /auth/reset-password**: Reset the password using a valid token.
+
+### Product Management
+
+- **POST /products**: Create a new product (Admin only).
+- **GET /products**: Get a paginated list of products.
+- **GET /products/:id**: Get a product by ID.
+- **PUT /products/:id**: Update a product (Admin only).
+- **DELETE /products/:id**: Delete a product (Admin only).
+
+## Environment Variables
+
+- `DB_HOST`: Database host (e.g., `localhost`).
+- `DB_PORT`: Database port (e.g., `5432`).
+- `DB_USER`: Database username.
+- `DB_PASS`: Database password.
+- `DB_NAME`: Database name.
+- `JWT_SECRET`: Secret key for JWT token generation.
+- `API_KEY`: Sendinblue API key for email functionality.
+- `SENDER_EMAIL`: Email address used to send emails.
+- `SENDER_NAME`: Name of the sender for emails.
+
+## Running Tests
+
+To run the tests, use the following command:
 
 ```bash
-$ npm install
+npm run test
 ```
 
-## Running the app
+## Contributing
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- NestJS for providing a robust framework for building scalable applications.
+- TypeORM for simplifying database operations.
+- Sendinblue for enabling seamless email communication.
+
+---
+
